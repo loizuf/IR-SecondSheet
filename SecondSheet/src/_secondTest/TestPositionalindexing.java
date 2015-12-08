@@ -1,6 +1,6 @@
 // This tests the searchmethod of the inverted index. The index constructor has to work for this
 
-package _firstTest;
+package _secondTest;
 
 import static org.junit.Assert.assertEquals;
 
@@ -15,9 +15,9 @@ import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
 import org.junit.runners.Parameterized.Parameters;
 
-import _firstGiven.FileReader;
-import _firstGiven.PositionalIndexEntry;
-import _firstWork.PositionalIndex;
+import _secondGiven.FileReader;
+import _secondGiven.PositionalIndexEntry;
+import _secondWork.PositionalIndex;
 
 @RunWith(Parameterized.class)
 public class TestPositionalindexing {

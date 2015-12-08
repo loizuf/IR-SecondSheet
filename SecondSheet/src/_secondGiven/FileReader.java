@@ -1,4 +1,4 @@
-package _firstGiven;
+package _secondGiven;
 
 import java.io.File;
 import java.io.FileNotFoundException;

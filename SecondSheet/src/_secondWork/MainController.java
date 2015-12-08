@@ -1,12 +1,11 @@
-package _firstWork;
+package _secondWork;
 
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-import _firstGiven.BooleanDocument;
-import _firstGiven.FileReader;
-import _firstGiven.InvertedIndex;
+import _secondGiven.BooleanDocument;
+import _secondGiven.FileReader;
 
 public class MainController {
 
@@ -15,7 +14,6 @@ public class MainController {
 	 * Dokumente enthaelt
 	 */
 	private static final String LOREM_IPSUM_COLLECTION_DIRECTORY_PATH = "collections/lorem";
-	private static final String TEST_COLLECTION = "collections/testCollections/second";
 
 	public static void main(String[] args) throws IOException {
 
@@ -36,9 +34,16 @@ public class MainController {
 		 *  Therefore we combine them into one string (just like in
 		 *  the indexing progress) and search for that as if it was one word
 		 */
-		// ArrayList<Integer> resultBiw = biWordIndex.searchForSingleWord(queryTerms[0]+" "+queryTerms[1]);
+		ArrayList<Integer> resultBiw = biWordIndex.searchForSingleWord(queryTerms[0]+" "+queryTerms[1]);
+		/*
+		 * This searches for the phrase in the positional index
+		 */
 		ArrayList<Integer> resultPos = positionalIndex.searchForPhrase(queryTerms);
 		
+		System.out.println("Ergebniss des Bi-WordIndex für '" + queryTerms[0]+" "+queryTerms[1] + "'");
+		postResults(resultBiw);
+
+		System.out.println("Ergebniss des Positional-Index");
 		postResults(resultPos);
 	}
 
@@ -64,9 +69,7 @@ public class MainController {
 	 * Diese Methode gibt ausschlieslich die Ergebnisse an den User aus
 	 */
 	private static void postResults(ArrayList<Integer> result) {
-		System.out.println();
-		System.out.println("+++++++");
-		System.out.println();
+		System.out.println("\n+++++++\n");
 		System.out.println("The results are:");
 		for (int currentResult : result) {
 			System.out.println(currentResult);

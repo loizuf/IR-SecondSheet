@@ -1,4 +1,4 @@
-package _firstTest;
+package _secondTest;
 
 import static org.junit.Assert.*;
 
@@ -13,9 +13,9 @@ import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
 import org.junit.runners.Parameterized.Parameters;
 
-import _firstGiven.BooleanDocument;
-import _firstGiven.FileReader;
-import _firstGiven.InvertedIndex;
+import _secondGiven.BooleanDocument;
+import _secondGiven.FileReader;
+import _secondGiven.InvertedIndex;
 
 @RunWith(Parameterized.class)
 public class TestMerge {

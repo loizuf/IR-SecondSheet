@@ -1,10 +1,9 @@
-package _firstWork;
+package _secondWork;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Iterator;
 
-import _firstGiven.BooleanDocument;
+import _secondGiven.BooleanDocument;
 
 public class BiWordIndex {
 
