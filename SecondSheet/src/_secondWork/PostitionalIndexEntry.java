@@ -13,9 +13,9 @@ public class PostitionalIndexEntry {
 		map = new TreeMap<String,Integer>();
 	}
 	
-	public addPosition(int d){
+	/*public addPosition(int d){
 		map.put(key, value)
-	}
+	}*/
 	
 	
 }
