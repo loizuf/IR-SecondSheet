@@ -1,11 +1,15 @@
 package _secondWork;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import _secondGiven.BooleanDocument;
 
 public class PositionalIndex {
 
+	
+	private HashMap<String, ArrayList<Integer>> index;
+	
 	// Bearbeiten sie Aufgabe 3 hier
 	public PositionalIndex(ArrayList<BooleanDocument> collection) {
 		

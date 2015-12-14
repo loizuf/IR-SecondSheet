@@ -23,7 +23,7 @@ public class MainController {
 		// biWordIndex - Repraesentation des biWordIndex
 		// positionalIndex - Repraesentation des positionalIndex
 		BiWordIndex biWordIndex = new BiWordIndex(collection);
-		PositionalIndex positionalIndex = new PositionalIndex(collection);
+		//PositionalIndex positionalIndex = new PositionalIndex(collection);
 
 		// breakdown the query into two terms
 		String[] queryTerms = getQueryTerms();
@@ -38,13 +38,13 @@ public class MainController {
 		/*
 		 * This searches for the phrase in the positional index
 		 */
-		ArrayList<Integer> resultPos = positionalIndex.searchForPhrase(queryTerms);
+		//ArrayList<Integer> resultPos = positionalIndex.searchForPhrase(queryTerms);
 		
-		System.out.println("Ergebniss des Bi-WordIndex für '" + queryTerms[0]+" "+queryTerms[1] + "'");
+		System.out.println("Ergebniss des Bi-WordIndex fï¿½r '" + queryTerms[0]+" "+queryTerms[1] + "'");
 		postResults(resultBiw);
 
-		System.out.println("Ergebniss des Positional-Index");
-		postResults(resultPos);
+		//System.out.println("Ergebniss des Positional-Index");
+		//postResults(resultPos);
 	}
 
 	// Bearbeiten sie Aufgabe 3 hier.

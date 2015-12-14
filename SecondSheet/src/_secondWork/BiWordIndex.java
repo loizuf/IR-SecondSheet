@@ -2,21 +2,56 @@ package _secondWork;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Iterator;
 
 import _secondGiven.BooleanDocument;
+import _secondGiven.InvertedIndex;
 
-public class BiWordIndex {
+public class BiWordIndex extends InvertedIndex{
 
-	private HashMap<String, ArrayList<Integer>> biWordIndex;
-
+	private HashMap<String, ArrayList<Integer>> index;
+	
 	// Bearbeiten sie Aufgabe 1 hier
 	public BiWordIndex(ArrayList<BooleanDocument> collection) {
-		biWordIndex = new HashMap<String, ArrayList<Integer>>();
+		//this calls the constructor for invertedindex class and indexs terms individually
+		super(collection);
+		
+		// index bi-words
+		
+					
+		// get the wordlist
+		Iterator<BooleanDocument> it = collection.iterator();
+		int docId = -1;
+		while (it.hasNext()) {
+			BooleanDocument doc = it.next();
+			docId++;
+			
+			// get the terms in the doc as a stream
+			ArrayList<String> terms = doc.getWordList();
+			Iterator<String> termIt = terms.iterator();
+			String lastTerm = "";
+			while (termIt.hasNext()) {
+				String term = termIt.next();
+				//cleaning the term
+				term = term.trim().toLowerCase();
+				
+				if (lastTerm.equals("")){//first term in doc
+					lastTerm=term;
+					continue;
+				}
+				else {
+					indexTerm(lastTerm+" "+term,docId);
+					lastTerm=term;
+				}
+			}//end of term loop
+									
+		} // end of document loop
+		
 	}
 
 	// We already know this method from the last assignement
 	public ArrayList<Integer> searchForSingleWord(String word) {
-		ArrayList<Integer> result = biWordIndex.get(word);
+		ArrayList<Integer> result = index.get(word);
 		if (result != null) {
 			return result;
 		} else {
@@ -26,7 +61,7 @@ public class BiWordIndex {
 
 	// For JUNIT-Tests. This Method must not be edited or deleted
 	public HashMap<String, ArrayList<Integer>> getBiWordHashmap() {
-		return biWordIndex;
+		return index;
 	}
 
 }

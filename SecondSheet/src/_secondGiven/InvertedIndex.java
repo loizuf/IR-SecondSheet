@@ -6,21 +6,20 @@ import java.util.Iterator;
 
 public class InvertedIndex {
 
-	private HashMap<String, ArrayList<Integer>> invertedIndex;
+	private HashMap<String, ArrayList<Integer>> index;
 
 	// Bearbeiten sie Aufgabe 1 hier.
 	public InvertedIndex(ArrayList<BooleanDocument> collection) {
 
-		invertedIndex = new HashMap<String, ArrayList<Integer>>();
+		index = new HashMap<String, ArrayList<Integer>>();
 
 		Iterator<BooleanDocument> it = collection.iterator();
 		int docId = -1;
 		while (it.hasNext()) {
 			BooleanDocument doc = it.next();
 			docId++;
-
+			
 			// we will only take unique terms just now as this is a boolean
-			// model
 			ArrayList<String> terms = doc.getUniqueWordList();
 			Iterator<String> termIt = terms.iterator();
 			while (termIt.hasNext()) {
@@ -30,6 +29,9 @@ public class InvertedIndex {
 				term = term.trim().toLowerCase();
 				indexTerm(term, docId);
 			}
+			
+			
+			
 
 		}
 	}
@@ -38,11 +40,11 @@ public class InvertedIndex {
 
 	public void indexTerm(String t, int doc) {
 
-		ArrayList<Integer> docList = invertedIndex.get(t);
+		ArrayList<Integer> docList = index.get(t);
 
 		if (docList == null) {
 			docList = new ArrayList<Integer>();
-			invertedIndex.put(t, docList);
+			index.put(t, docList);
 		}
 
 		docList.add(doc);
@@ -51,7 +53,7 @@ public class InvertedIndex {
 
 	// Bearbeiten sie Aufgabe 2 hier.
 	public ArrayList<Integer> searchForSingleWord(String word) {
-		ArrayList<Integer> result = invertedIndex.get(word);
+		ArrayList<Integer> result = index.get(word);
 		if (result != null) {
 			return result;
 		} else {
@@ -112,7 +114,7 @@ public class InvertedIndex {
 
 	// For JUNIT-Tests. This Method must not be edited or deleted
 	public HashMap<String, ArrayList<Integer>> getInvertedIndexHashmap() {
-		return invertedIndex;
+		return index;
 	}
 
 	// Fuer Aufgabe 5 erweitern sie diese Klasse um weitere Methoden
