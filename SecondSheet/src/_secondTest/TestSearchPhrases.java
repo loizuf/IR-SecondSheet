@@ -1,11 +1,10 @@
 package _secondTest;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.HashMap;
 import java.util.List;
 
 import org.junit.Test;
@@ -13,26 +12,25 @@ import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
 import org.junit.runners.Parameterized.Parameters;
 
-import _secondGiven.BooleanDocument;
 import _secondGiven.FileReader;
-import _secondGiven.InvertedIndex;
+import _secondWork.PositionalIndex;
 
 @RunWith(Parameterized.class)
-public class TestMerge {
+public class TestSearchPhrases {
 
 	// Location of test collection
 	private static final String TEST_PATH_2 = "collections/testCollections/second";
 
 	// Variable containing an instance of InvertedIndex
-	private InvertedIndex invertedIndex;
+	private PositionalIndex positionalIndex;
 
 	// parameterized variables
 	private String[] inputTerms;
 	private ArrayList<Integer> expectedResult;
 
-	public TestMerge(String[] inputTerms, ArrayList<Integer> expectedResult, String message) throws FileNotFoundException {
+	public TestSearchPhrases(String[] inputTerms, ArrayList<Integer> expectedResult, String message) throws FileNotFoundException {
 		// these Variables are used to test the two methods
-		invertedIndex = new InvertedIndex(FileReader.readCollection(TEST_PATH_2));
+		positionalIndex = new PositionalIndex(FileReader.readCollection(TEST_PATH_2));
 
 		this.inputTerms = inputTerms;
 		this.expectedResult = expectedResult;
@@ -40,7 +38,7 @@ public class TestMerge {
 
 	@Test
 	public void testPerformANDMerge() {
-		assertEquals(expectedResult, invertedIndex.performANDMerge(inputTerms[0], inputTerms[1]));
+		assertEquals(expectedResult, positionalIndex.searchForPhrase(inputTerms));
 	}
 	
 	// This method sets up the data for the tests
@@ -51,11 +49,12 @@ public class TestMerge {
 					{ new String[]{"is", "null"}, new ArrayList<Integer>(Arrays.asList(new Integer[] {})), "2. Term nicht vorhanden" },
 					{ new String[]{"naught", "is"}, new ArrayList<Integer>(Arrays.asList(new Integer[] {})), "1. Term nicht vorhanden" },
 					{ new String[]{"naught", "null"}, new ArrayList<Integer>(Arrays.asList(new Integer[] {})), "Beide Terme nicht vorhanden" },
-					{ new String[]{"no", "green"}, new ArrayList<Integer>(Arrays.asList(new Integer[] { 1 })), "Match am Anfang" },
-					{ new String[]{"eating", "this"}, new ArrayList<Integer>(Arrays.asList(new Integer[] { 4 })), "Match am Ende" },
-					{ new String[]{"moon", "eating"}, new ArrayList<Integer>(Arrays.asList(new Integer[] { 2 })), "Match in der Mitte" },
-					{ new String[]{"corn", "station"}, new ArrayList<Integer>(Arrays.asList(new Integer[] { 3, 5 })), "Mehrere Matches" },
-					{ new String[]{"moon", "moon"}, new ArrayList<Integer>(Arrays.asList(new Integer[] { 1, 2, 3, 5 })), "Gleiches Wort" }
+					{ new String[]{"there", "is"}, new ArrayList<Integer>().add(0), "Match am Anfang" },
+					{ new String[]{"the", "sea"}, new ArrayList<Integer>().add(4), "Match am Ende" },
+					{ new String[]{"eating", "collars"}, new ArrayList<Integer>(Arrays.asList(new Integer[] { 5 })), "Match in der Mitte" },
+					{ new String[]{"space", "station"}, new ArrayList<Integer>(Arrays.asList(new Integer[] { 2, 6, 7 })), "Mehrere Matches" },
+					{ new String[]{"moon", "moon"}, new ArrayList<Integer>(), "Gleiches Wort" },
+					{ new String[]{"camels", "four"}, new ArrayList<Integer>(), "falsche Reihenfolge" }
 				});
 	}
 
