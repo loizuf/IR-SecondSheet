@@ -21,7 +21,7 @@ public class TestSearchProximity {
 	// Location of test collection
 	private static final String TEST_PATH_2 = "collections/testCollections/second";
 
-	// Variable containing an instance of InvertedIndex
+	// Variable containing an instance of PositionalIndex
 	private PositionalIndex positionalIndex;
 
 	// parameterized variables
@@ -29,7 +29,6 @@ public class TestSearchProximity {
 	private ArrayList<Integer> expectedResult;
 
 	public TestSearchProximity(String[] inputTerms, ArrayList<Integer> expectedResult, String message) throws FileNotFoundException {
-		// these Variables are used to test the two methods
 		positionalIndex = new PositionalIndex(FileReader.readCollection(TEST_PATH_2));
 
 		this.inputTerms = inputTerms;
@@ -38,23 +37,28 @@ public class TestSearchProximity {
 
 	@Test
 	public void testPerformANDMerge() {
+		// compare expected result with the result of the students
 		assertEquals(expectedResult, positionalIndex.searchForPhrase(inputTerms));
 	}
 	
 	// This method sets up the data for the tests
-	@Parameters (name = "{2}")
+	// the third variable is used to display a description to the students
+	@Parameters (name = "{3}")
 	public static List<Object[]> data() {
 		return Arrays
 				.asList(new Object[][] { 
-					{ new String[]{"is", "null"}, new ArrayList<Integer>(Arrays.asList(new Integer[] {})), "2. Term nicht vorhanden" },
-					{ new String[]{"naught", "is"}, new ArrayList<Integer>(Arrays.asList(new Integer[] {})), "1. Term nicht vorhanden" },
-					{ new String[]{"naught", "null"}, new ArrayList<Integer>(Arrays.asList(new Integer[] {})), "Beide Terme nicht vorhanden" },
-					{ new String[]{"there", "is"}, new ArrayList<Integer>().add(0), "Match am Anfang" },
-					{ new String[]{"the", "sea"}, new ArrayList<Integer>().add(4), "Match am Ende" },
-					{ new String[]{"eating", "collars"}, new ArrayList<Integer>(Arrays.asList(new Integer[] { 5 })), "Match in der Mitte" },
-					{ new String[]{"space", "station"}, new ArrayList<Integer>(Arrays.asList(new Integer[] { 2, 6, 7 })), "Mehrere Matches" },
-					{ new String[]{"moon", "moon"}, new ArrayList<Integer>(), "Gleiches Wort" },
-					{ new String[]{"camels", "four"}, new ArrayList<Integer>(), "falsche Reihenfolge" }
+					{ new String[]{"is", "null"}, new ArrayList<Integer>(Arrays.asList(new Integer[] {})), 1, "2. Term nicht vorhanden" },
+					{ new String[]{"naught", "is"}, new ArrayList<Integer>(Arrays.asList(new Integer[] {})), 1, "1. Term nicht vorhanden" },
+					{ new String[]{"naught", "null"}, new ArrayList<Integer>(Arrays.asList(new Integer[] {})), 1, "Beide Terme nicht vorhanden" },
+					{ new String[]{"there", "is"}, new ArrayList<Integer>().add(0), 1, "Match am Anfang" },
+					{ new String[]{"the", "sea"}, new ArrayList<Integer>().add(4), 1, "Match am Ende" },
+					{ new String[]{"green", "eating"}, new ArrayList<Integer>(Arrays.asList(new Integer[] { 1, 5 })), 3, "Mehrere Treffer" },
+					{ new String[]{"eating", "green"}, new ArrayList<Integer>(Arrays.asList(new Integer[] { 1, 5 })), 3, "Umgedrehte Reihenfolge" },
+					{ new String[]{"eating", "green"}, new ArrayList<Integer>(Arrays.asList(new Integer[] { 1, 5 })), 4, "k größer" },
+					{ new String[]{"eating", "green"}, new ArrayList<Integer>(Arrays.asList(new Integer[] { 5 })), 2, "k kleiner" },
+					{ new String[]{"eating", "green"}, new ArrayList<Integer>(Arrays.asList(new Integer[] {})), 1, "k zu klein" },
+					{ new String[]{"space", "station"}, new ArrayList<Integer>(Arrays.asList(new Integer[] {})), 0, "k=0" },
+					{ new String[]{"moon", "moon"}, new ArrayList<Integer>(), 1, "Gleiches Wort" }
 				});
 	}
 

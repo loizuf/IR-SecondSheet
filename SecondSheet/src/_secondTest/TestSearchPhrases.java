@@ -21,7 +21,7 @@ public class TestSearchPhrases {
 	// Location of test collection
 	private static final String TEST_PATH_2 = "collections/testCollections/second";
 
-	// Variable containing an instance of InvertedIndex
+	// Variable containing an instance of PositionalIndex
 	private PositionalIndex positionalIndex;
 
 	// parameterized variables
@@ -29,7 +29,6 @@ public class TestSearchPhrases {
 	private ArrayList<Integer> expectedResult;
 
 	public TestSearchPhrases(String[] inputTerms, ArrayList<Integer> expectedResult, String message) throws FileNotFoundException {
-		// these Variables are used to test the two methods
 		positionalIndex = new PositionalIndex(FileReader.readCollection(TEST_PATH_2));
 
 		this.inputTerms = inputTerms;
@@ -38,10 +37,12 @@ public class TestSearchPhrases {
 
 	@Test
 	public void testPerformANDMerge() {
+		// compare expected result with the result of the students
 		assertEquals(expectedResult, positionalIndex.searchForPhrase(inputTerms));
 	}
 	
 	// This method sets up the data for the tests
+	// the third variable is used to display a description to the students
 	@Parameters (name = "{2}")
 	public static List<Object[]> data() {
 		return Arrays

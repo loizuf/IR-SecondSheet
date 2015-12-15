@@ -27,7 +27,7 @@ public class TestPositionalSingleWord {
 	// the actual collection isnt lower or uppercase)
 	private static final String TEST_PATH_2 = "collections/testCollections/second";
 
-	// Variable containing an instance of InvertedIndex
+	// Variable containing an instance of PositionalIndex
 	private PositionalIndex positionalIndex;
 
 	// parameterized variables
@@ -36,7 +36,6 @@ public class TestPositionalSingleWord {
 
 	public TestPositionalSingleWord(String inputString, PositionalIndexEntry expectedResult, String message)
 			throws FileNotFoundException {
-		// these Variables are used to test the two methods
 		positionalIndex = new PositionalIndex(FileReader.readCollection(TEST_PATH_2));
 
 		this.inputString = inputString;
@@ -45,10 +44,12 @@ public class TestPositionalSingleWord {
 
 	@Test
 	public void testSearchForSingleWord() {
+		// compare expected result with the result of the students
 		assertEquals(expectedResult.getDocMap(), positionalIndex.searchForSingleWord(inputString));
 	}
 	
 	// This method sets up the data for the tests
+	// the third variable is used to display a description to the students
 	@Parameters (name = "{2}")
 	public static List<Object[]> data() {
 		return Arrays

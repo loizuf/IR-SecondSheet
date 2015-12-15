@@ -27,7 +27,7 @@ public class TestBiWordIndexing {
 	// the actual collection isnt lower or uppercase)
 	private static final String TEST_PATH_2 = "collections/testCollections/second";
 
-	// Variable containing an instance of InvertedIndex
+	// Variable containing an instance of BiwordIndex
 	private BiWordIndex biWordIndex;
 
 	// parameterized variables
@@ -36,7 +36,6 @@ public class TestBiWordIndexing {
 
 	public TestBiWordIndexing(String inputString, ArrayList<Integer> expectedResult, String message)
 			throws FileNotFoundException {
-		// these Variables are used to test the two methods
 		biWordIndex = new BiWordIndex(FileReader.readCollection(TEST_PATH_2));
 
 		this.inputString = inputString;
@@ -45,10 +44,12 @@ public class TestBiWordIndexing {
 
 	@Test
 	public void testSearchForSingleWord() {
+		// compare expected result with the result of the students
 		assertEquals(expectedResult, biWordIndex.searchForSingleWord(inputString));
 	}
 
 	// This method sets up the data for the tests
+	// the third variable is used to display a description to the students
 	@Parameters (name = "{2}")
 	public static List<Object[]> data() {
 		return Arrays
