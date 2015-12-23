@@ -15,7 +15,7 @@ public class BiWordIndex extends InvertedIndex{
 	public BiWordIndex(ArrayList<BooleanDocument> collection) {
 		//this calls the constructor for invertedindex class and indexs terms individually
 		super(collection);
-		
+		index =super.index;
 		// index bi-words
 		
 					

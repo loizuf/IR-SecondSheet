@@ -6,7 +6,7 @@ import java.util.Iterator;
 
 public class InvertedIndex {
 
-	private HashMap<String, ArrayList<Integer>> index;
+	protected HashMap<String, ArrayList<Integer>> index;
 
 	// Bearbeiten sie Aufgabe 1 hier.
 	public InvertedIndex(ArrayList<BooleanDocument> collection) {
