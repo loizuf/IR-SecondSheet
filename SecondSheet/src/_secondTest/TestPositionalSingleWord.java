@@ -60,23 +60,5 @@ public class TestPositionalSingleWord {
 					{ "cook", new ArrayList<Integer>(Arrays.asList(new Integer[] { })), "No Document" } 
 				});
 	}
-	
-	// A method to simply write the method above (data) in a readable form.
-	// This method just creates a treemap from a twodimensional array
-	/*
-	private static TreeMap<Integer, ArrayList<Integer>> getTreemap(int[][] array) {
-		TreeMap<Integer, ArrayList<Integer>> result = new TreeMap<Integer, ArrayList<Integer>>();
-		for (int i = 0; i < array.length; i++) {
-			ArrayList<Integer> currentValue = new ArrayList<>();
-			for (int j = 0; j < array[i].length; j++) {
-				currentValue.add(array[i][j]);
-			}
-			
-			// This is important as the indexing process doesnt keep empty arraylists for every document
-			if(!currentValue.isEmpty())
-			result.put(i, currentValue);
-		}
-		return result;
-	}*/
 
 }
