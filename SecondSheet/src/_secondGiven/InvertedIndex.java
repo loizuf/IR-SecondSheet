@@ -9,14 +9,14 @@ public class InvertedIndex {
 	protected HashMap<String, ArrayList<Integer>> index;
 
 	// Bearbeiten sie Aufgabe 1 hier.
-	public InvertedIndex(ArrayList<BooleanDocument> collection) {
+	public InvertedIndex(ArrayList<Document> collection) {
 
 		index = new HashMap<String, ArrayList<Integer>>();
 
-		Iterator<BooleanDocument> it = collection.iterator();
+		Iterator<Document> it = collection.iterator();
 		int docId = -1;
 		while (it.hasNext()) {
-			BooleanDocument doc = it.next();
+			Document doc = it.next();
 			docId++;
 			
 			// we will only take unique terms just now as this is a boolean

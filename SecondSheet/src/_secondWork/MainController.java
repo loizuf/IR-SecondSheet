@@ -4,7 +4,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-import _secondGiven.BooleanDocument;
+import _secondGiven.Document;
 import _secondGiven.FileReader;
 
 public class MainController {
@@ -18,7 +18,7 @@ public class MainController {
 	public static void main(String[] args) throws IOException {
 
 		// collection - Liste aller Document-Objekte
-		ArrayList<BooleanDocument> collection = FileReader.readCollection(LOREM_IPSUM_COLLECTION_DIRECTORY_PATH);
+		ArrayList<Document> collection = FileReader.readCollection(LOREM_IPSUM_COLLECTION_DIRECTORY_PATH);
 
 		// biWordIndex - Repraesentation des biWordIndex
 		// positionalIndex - Repraesentation des positionalIndex

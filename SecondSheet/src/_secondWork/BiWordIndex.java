@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
 
-import _secondGiven.BooleanDocument;
+import _secondGiven.Document;
 import _secondGiven.InvertedIndex;
 
 public class BiWordIndex extends InvertedIndex{
@@ -12,7 +12,7 @@ public class BiWordIndex extends InvertedIndex{
 	private HashMap<String, ArrayList<Integer>> index;
 	
 	// Bearbeiten sie Aufgabe 1 hier
-	public BiWordIndex(ArrayList<BooleanDocument> collection) {
+	public BiWordIndex(ArrayList<Document> collection) {
 		//this calls the constructor for invertedindex class and indexs terms individually
 		super(collection);
 		index =super.index;
@@ -20,10 +20,10 @@ public class BiWordIndex extends InvertedIndex{
 		
 					
 		// get the wordlist
-		Iterator<BooleanDocument> it = collection.iterator();
+		Iterator<Document> it = collection.iterator();
 		int docId = -1;
 		while (it.hasNext()) {
-			BooleanDocument doc = it.next();
+			Document doc = it.next();
 			docId++;
 			
 			// get the terms in the doc as a stream

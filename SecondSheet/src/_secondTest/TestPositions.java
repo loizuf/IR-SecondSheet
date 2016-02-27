@@ -15,7 +15,6 @@ import org.junit.runners.Parameterized;
 import org.junit.runners.Parameterized.Parameters;
 
 import _secondGiven.FileReader;
-import _secondGiven.PositionalIndexEntry;
 import _secondWork.PositionalIndex;
 
 @RunWith(Parameterized.class)
@@ -32,10 +31,10 @@ public class TestPositions {
 
 	// parameterized variables
 	private String inputString;
-	private PositionalIndexEntry expectedResult;
+	private ArrayList<Integer> expectedResult;
 	private int inputDocNumber;
 
-	public TestPositions(String inputString, PositionalIndexEntry expectedResult, int inputDocNumber, String message)
+	public TestPositions(String inputString, ArrayList<Integer> expectedResult, int inputDocNumber, String message)
 			throws FileNotFoundException {
 		positionalIndex = new PositionalIndex(FileReader.readCollection(TEST_PATH_2));
 
@@ -47,7 +46,7 @@ public class TestPositions {
 	@Test
 	public void testSearchForSingleWord() {
 		// compare expected result with the result of the students
-		assertEquals(expectedResult.getDocMap(), positionalIndex.searchForSingleWordInDocument(inputString, inputDocNumber));
+		assertEquals(expectedResult, positionalIndex.searchForSingleWordInDocument(inputString, inputDocNumber));
 	}
 
 	// This method sets up the data for the tests

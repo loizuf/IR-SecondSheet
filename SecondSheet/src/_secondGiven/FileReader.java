@@ -11,8 +11,8 @@ public class FileReader {
 	 * Diese Methode iteriert über alle Dokumente im Verzeichniss. Für jedes
 	 * Dokument wird ein Dokument-Objekt erzeugt und in collection gespeichert
 	 */
-	public static ArrayList<BooleanDocument> readCollection(String path) throws FileNotFoundException {
-		ArrayList<BooleanDocument> collection = new ArrayList<>();
+	public static ArrayList<Document> readCollection(String path) throws FileNotFoundException {
+		ArrayList<Document> collection = new ArrayList<>();
 		File directory = new File(path);
 		File[] directoryListing = directory.listFiles();
 
@@ -27,7 +27,7 @@ public class FileReader {
 			String entireTextFile = scanner.next();
 			scanner.close();
 
-			BooleanDocument document = new BooleanDocument(entireTextFile, child.getName());
+			Document document = new Document(entireTextFile, child.getName());
 			collection.add(document);
 		}
 		return collection;
