@@ -53,9 +53,9 @@ public class TestPositionalSingleWord {
 	public static List<Object[]> data() {
 		return Arrays
 				.asList(new Object[][] { 
-					{ "purple", new ArrayList<Integer>(Arrays.asList(new Integer[] { 1 })), "Single Document" },
-					{ "corn", new ArrayList<Integer>(Arrays.asList(new Integer[] { 1, 2, 3, 5 })), "Multiple Documents" },
-					{ "moon", new ArrayList<Integer>(Arrays.asList(new Integer[] { 1, 2, 3, 5 })), "Term at the end of a Document" },
+					{ "purple", new ArrayList<Integer>(Arrays.asList(new Integer[] { 0 })), "Single Document" },
+					{ "corn", new ArrayList<Integer>(Arrays.asList(new Integer[] { 0, 1, 2, 4 })), "Multiple Documents" },
+					{ "moon", new ArrayList<Integer>(Arrays.asList(new Integer[] { 0, 1, 2, 4 })), "Term at the end of a Document" },
 					{ "soylent", new ArrayList<Integer>(Arrays.asList(new Integer[] { 2 })), "Term at the start of a Document" },
 					{ "cook", new ArrayList<Integer>(Arrays.asList(new Integer[] { })), "No Document" } 
 				});

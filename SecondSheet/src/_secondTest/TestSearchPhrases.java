@@ -61,7 +61,7 @@ public class TestSearchPhrases {
 					{ new String[]{"are", "eating", "tree"}, new ArrayList<Integer>().add(3), "2 von 3" },
 					{ new String[]{"is", "green", "no"}, new ArrayList<Integer>(), "falsche Reihenfolge" },
 					{ new String[]{"are", "people", "collars"}, new ArrayList<Integer>(), "nicht nebeneinander" },
-					{ new String[]{"is", "no", "green", "space"}, new ArrayList<Integer>(), "4 Wörter" }
+					{ new String[]{"is", "no", "green", "space"}, new ArrayList<Integer>().add(6), "4 Wörter" }
 				});
 	}
 
