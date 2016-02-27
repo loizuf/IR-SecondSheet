@@ -47,15 +47,21 @@ public class TestSearchPhrases {
 	public static List<Object[]> data() {
 		return Arrays
 				.asList(new Object[][] { 
-					{ new String[]{"is", "null"}, new ArrayList<Integer>(Arrays.asList(new Integer[] {})), "2. Term nicht vorhanden" },
-					{ new String[]{"naught", "is"}, new ArrayList<Integer>(Arrays.asList(new Integer[] {})), "1. Term nicht vorhanden" },
-					{ new String[]{"naught", "null"}, new ArrayList<Integer>(Arrays.asList(new Integer[] {})), "Beide Terme nicht vorhanden" },
+					{ new String[]{"is", "null"}, new ArrayList<Integer>(), "2. Term nicht vorhanden" },
+					{ new String[]{"naught", "is"}, new ArrayList<Integer>(), "1. Term nicht vorhanden" },
+					{ new String[]{"naught", "null"}, new ArrayList<Integer>(), "Beide Terme nicht vorhanden" },
 					{ new String[]{"there", "is"}, new ArrayList<Integer>().add(0), "Match am Anfang" },
 					{ new String[]{"the", "sea"}, new ArrayList<Integer>().add(4), "Match am Ende" },
-					{ new String[]{"eating", "collars"}, new ArrayList<Integer>(Arrays.asList(new Integer[] { 5 })), "Match in der Mitte" },
+					{ new String[]{"eating", "collars"}, new ArrayList<Integer>().add(5), "Match in der Mitte" },
 					{ new String[]{"space", "station"}, new ArrayList<Integer>(Arrays.asList(new Integer[] { 2, 6, 7 })), "Mehrere Matches" },
 					{ new String[]{"moon", "moon"}, new ArrayList<Integer>(), "Gleiches Wort" },
-					{ new String[]{"camels", "four"}, new ArrayList<Integer>(), "falsche Reihenfolge" }
+					{ new String[]{"there", "is", "no"}, new ArrayList<Integer>().add(0), "3 Wörter, Anfang" },
+					{ new String[]{"is", "people", "eating"}, new ArrayList<Integer>().add(1), "3 Wörter, Mitte" },
+					{ new String[]{"station", "of", "corn"}, new ArrayList<Integer>().add(2), "3 Wörter, Ende" },
+					{ new String[]{"are", "eating", "tree"}, new ArrayList<Integer>().add(3), "2 von 3" },
+					{ new String[]{"is", "green", "no"}, new ArrayList<Integer>(), "falsche Reihenfolge" },
+					{ new String[]{"are", "people", "collars"}, new ArrayList<Integer>(), "nicht nebeneinander" },
+					{ new String[]{"is", "no", "green", "space"}, new ArrayList<Integer>(), "4 Wörter" }
 				});
 	}
 
