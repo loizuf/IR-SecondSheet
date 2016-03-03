@@ -15,8 +15,8 @@ import org.junit.runners.Parameterized;
 import org.junit.runners.Parameterized.Parameters;
 
 import _secondGiven.FileReader;
+import _secondGiven.Document;
 import _secondWork.BiWordIndex;
-import _secondWork.PositionalIndex;
 
 @RunWith(Parameterized.class)
 public class TestBiWordIndexing {
