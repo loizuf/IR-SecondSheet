@@ -2,64 +2,64 @@
 
 package _secondTest;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertArrayEquals;
 
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
+import java.util.Collections;
 
+import org.junit.BeforeClass;
 import org.junit.Test;
-import org.junit.runner.RunWith;
-import org.junit.runners.Parameterized;
-import org.junit.runners.Parameterized.Parameters;
 
 import _secondGiven.FileReader;
-import _secondGiven.Document;
 import _secondWork.BiWordIndex;
 
-@RunWith(Parameterized.class)
 public class TestBiWordIndexing {
 
-	// Location of two (nonsensical) collections
-	// first collection is simple, second contains upper and lowercase as well
-	// as unnecessary whitespace (which isn't important for the first sheet as
-	// the actual collection isnt lower or uppercase)
-	private static final String TEST_PATH_2 = "collections/testCollections/second";
+	// Location of test collection
+	private static final String TEST_PATH_3 = "collections/testCollections/third";
 
 	// Variable containing an instance of BiwordIndex
 	private BiWordIndex biWordIndex;
-
-	// parameterized variables
-	private String inputString;
-	private ArrayList<Integer> expectedResult;
-
-	public TestBiWordIndexing(String inputString, ArrayList<Integer> expectedResult, String message)
-			throws FileNotFoundException {
-		biWordIndex = new BiWordIndex(FileReader.readCollection(TEST_PATH_2));
-
-		this.inputString = inputString;
-		this.expectedResult = expectedResult;
+	
+	@BeforeClass
+	public void setupBeforeClass() throws FileNotFoundException {
+		biWordIndex = new BiWordIndex(FileReader.readCollection(TEST_PATH_3));
 	}
 
 	@Test
-	public void testSearchForSingleWord() {
-		// compare expected result with the result of the students
-		assertEquals(expectedResult, biWordIndex.searchForSingleWord(inputString));
+	public void TestAbsentTerms() {
+		ArrayList<Integer> arrayList = biWordIndex.searchForSingleWord("doctor marcus");
+		Integer[] array = arrayList.toArray(new Integer[arrayList.size()]);
+		assertArrayEquals(new Integer[] { }, array);
 	}
 
-	// This method sets up the data for the tests
-	// the third variable is used to display a description to the students
-	@Parameters (name = "{2}")
-	public static List<Object[]> data() {
-		return Arrays
-				.asList(new Object[][] { 
-					{ "president obama", new ArrayList<Integer>(Arrays.asList(new Integer[] {  })), "no document" },
-					{ "soylent green", new ArrayList<Integer>(Arrays.asList(new Integer[] { 1 })), "single document" },
-					{ "there is", new ArrayList<Integer>(Arrays.asList(new Integer[] { 0, 5 })), "at the start of document" },
-					{ "no moon", new ArrayList<Integer>(Arrays.asList(new Integer[] { 2, 6 })), "at the end of document" },
-					{ "space station", new ArrayList<Integer>(Arrays.asList(new Integer[] { 2, 6, 7 })), "more than 2 documents" }
-				});
+	@Test
+	public void TestTermsInOneDocument() {
+		ArrayList<Integer> arrayList = biWordIndex.searchForSingleWord("half vulcan");
+		Integer[] array = arrayList.toArray(new Integer[arrayList.size()]);
+		assertArrayEquals(new Integer[] { 1 }, array);
 	}
 
+	@Test
+	public void TestFirstTerms() {
+		ArrayList<Integer> arrayList = biWordIndex.searchForSingleWord("lieutenant hikaru");
+		Integer[] array = arrayList.toArray(new Integer[arrayList.size()]);
+		assertArrayEquals(new Integer[] { 5 }, array);
+	}
+
+	@Test
+	public void TestLastTerms() {
+		ArrayList<Integer> arrayList = biWordIndex.searchForSingleWord("starship reliant");
+		Integer[] array = arrayList.toArray(new Integer[arrayList.size()]);
+		assertArrayEquals(new Integer[] { 6 }, array);
+	}
+
+	@Test
+	public void TestTermsInMultipleDocuments() {
+		ArrayList<Integer> arrayList = biWordIndex.searchForSingleWord("commander spock");
+		Collections.sort(arrayList);
+		Integer[] array = arrayList.toArray(new Integer[arrayList.size()]);
+		assertArrayEquals(new Integer[] { 1, 2 }, array);
+	}
 }

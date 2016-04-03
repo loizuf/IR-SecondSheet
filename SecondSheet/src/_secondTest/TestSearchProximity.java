@@ -1,5 +1,6 @@
 package _secondTest;
 
+import static org.junit.Assert.assertArrayEquals;
 import static org.junit.Assert.assertEquals;
 
 import java.io.FileNotFoundException;
@@ -7,6 +8,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+import org.junit.BeforeClass;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
@@ -14,13 +16,13 @@ import org.junit.runners.Parameterized.Parameters;
 
 import _secondGiven.FileReader;
 import _secondGiven.Document;
+import _secondWork.BiWordIndex;
 import _secondWork.PositionalIndex;
 
-@RunWith(Parameterized.class)
 public class TestSearchProximity {
 
 	// Location of test collection
-	private static final String TEST_PATH_2 = "collections/testCollections/second";
+	private static final String TEST_PATH_3 = "collections/testCollections/third";
 
 	// Variable containing an instance of PositionalIndex
 	private PositionalIndex positionalIndex;
@@ -30,10 +32,22 @@ public class TestSearchProximity {
 	private ArrayList<Integer> expectedResult;
 
 	public TestSearchProximity(String[] inputTerms, ArrayList<Integer> expectedResult, String message) throws FileNotFoundException {
-		positionalIndex = new PositionalIndex(FileReader.readCollection(TEST_PATH_2));
+		
 
 		this.inputTerms = inputTerms;
 		this.expectedResult = expectedResult;
+	}
+
+	@BeforeClass
+	public void setupBeforeClass() throws FileNotFoundException {
+		positionalIndex = new PositionalIndex(FileReader.readCollection(TEST_PATH_3));
+	}
+
+	@Test
+	public void TestAbsentTerms() {
+		ArrayList<Integer> arrayList = positionalIndex.searchForPhrase(new String[]{"", ""}, 0);
+		Integer[] array = arrayList.toArray(new Integer[arrayList.size()]);
+		assertArrayEquals(new Integer[] { }, array);
 	}
 
 	@Test
