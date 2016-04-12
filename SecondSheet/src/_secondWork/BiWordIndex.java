@@ -9,6 +9,8 @@ import _secondGiven.InvertedIndex;
 
 public class BiWordIndex extends InvertedIndex{
 
+	// Diese Variable KANN verwendet werden um den BiWord-Index zu speichern.
+	// Sie können auch eine eigene Variable anlegen.
 	private HashMap<String, ArrayList<Integer>> index;
 	
 	// Bearbeiten sie Aufgabe 1 hier
@@ -16,14 +18,9 @@ public class BiWordIndex extends InvertedIndex{
 		super(collection);
 	}
 
-	// We already know this method from the last assignement
+	// Wir kennen diese Aufgabe vom ersten Arbeitsblatt
+	// Sie können ihren code übernehmen
 	public ArrayList<Integer> searchForSingleWord(String word) {
-		ArrayList<Integer> result = index.get(word);
-		if (result != null) {
-			return result;
-		} else {
-			return new ArrayList<Integer>();
-		}
+		return null;
 	}
-
 }

@@ -12,25 +12,25 @@ public class PositionalIndex {
 	}
 	
 	// Bearbeiten sie Aufgabe 4.a hier
-	// returns list with docId's containing word
+	// Gibt eine Liste von Dokumenten ID's zurück die diesen Term beinhalten
 	public ArrayList<Integer> searchForSingleWord(String word) {
 		return null;
 	}
 
 	// Bearbeiten sie Aufgabe 4.b hier
-	// returns list with positions on which word occurs in the document with the ID docNumber
+	// Gibt eine Liste von Positionsnummern zurück an denen das Wort in diesem Dokument vorkommt
 	public ArrayList<Integer> searchForSingleWordInDocument(String word, int docNumber) {
 		return null;
 	}
 
 	// Bearbeiten sie Aufgabe 4.c hier (ebenso Aufgabe 5)
-	// returns list of docId's containing word-combination
+	// Gibt eine Liste von Dokumenten ID's zurück die diese Phrase enthalten
 	public ArrayList<Integer> searchForPhrase(String[] phrase) {
 		return null;
 	}
 	
 	// Bearbeiten sie Aufgabe 6 hier
-	// returns list of docId's containing words in proximity of k of each other
+	// Gibt eine Liste von Dokumenten ID's zurück die diese Terme im Abstand von k zueinander enthalten
 	public ArrayList<Integer> searchForPhrase(String[] phrase, int k) {
 		return null;
 	}

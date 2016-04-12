@@ -1,4 +1,4 @@
-package _secondTest;
+package test;
 
 import static org.junit.Assert.assertArrayEquals;
 
@@ -12,7 +12,9 @@ import org.junit.Test;
 import _secondGiven.FileReader;
 import _secondWork.PositionalIndex;
 
-public class TestSearchPhrases {
+// This tests if a search for a phrase with 2 terms in a set distance to each other returns the correct document-numbers
+
+public class Test_5 {
 
 	// Location of test collection
 	private static final String TEST_PATH_3 = "collections/testCollections/third";
@@ -27,7 +29,7 @@ public class TestSearchPhrases {
 
 	@Test
 	public void TestAbsentFirstTerm() {
-		ArrayList<Integer> arrayList = positionalIndex.searchForPhrase(new String[]{"marcus", "doctor"});
+		ArrayList<Integer> arrayList = positionalIndex.searchForPhrase(new String[]{"marcus", "doctor"}, 1);
 		Collections.sort(arrayList);
 		Integer[] array = arrayList.toArray(new Integer[arrayList.size()]);
 		assertArrayEquals(new Integer[] { }, array);
@@ -35,75 +37,57 @@ public class TestSearchPhrases {
 
 	@Test
 	public void TestAbsentSecondTerm() {
-		ArrayList<Integer> arrayList = positionalIndex.searchForPhrase(new String[]{"doctor", "Qu"});
+		ArrayList<Integer> arrayList = positionalIndex.searchForPhrase(new String[]{"doctor", "Qu"}, 1);
 		Collections.sort(arrayList);
 		Integer[] array = arrayList.toArray(new Integer[arrayList.size()]);
 		assertArrayEquals(new Integer[] { }, array);
 	}
 
 	@Test
-	public void TestAbsentBothTerms() {
-		ArrayList<Integer> arrayList = positionalIndex.searchForPhrase(new String[]{"marcus", "Qu"});
-		Collections.sort(arrayList);
-		Integer[] array = arrayList.toArray(new Integer[arrayList.size()]);
-		assertArrayEquals(new Integer[] { }, array);
-	}
-
-	@Test
-	public void TestMatchAtTheStart() {
-		ArrayList<Integer> arrayList = positionalIndex.searchForPhrase(new String[]{"doctor", "leonard"});
+	public void TestDistanceofTwo() {
+		ArrayList<Integer> arrayList = positionalIndex.searchForPhrase(new String[]{"doctor", "horatio"}, 2);
 		Collections.sort(arrayList);
 		Integer[] array = arrayList.toArray(new Integer[arrayList.size()]);
 		assertArrayEquals(new Integer[] { 2 }, array);
 	}
 
 	@Test
-	public void TestMatchAtTheEnd() {
-		ArrayList<Integer> arrayList = positionalIndex.searchForPhrase(new String[]{"most", "human"});
+	public void TestDistanceOfThree() {
+		ArrayList<Integer> arrayList = positionalIndex.searchForPhrase(new String[]{"souls", "encountered"}, 3);
 		Collections.sort(arrayList);
 		Integer[] array = arrayList.toArray(new Integer[arrayList.size()]);
-		assertArrayEquals(new Integer[] { }, array);
+		assertArrayEquals(new Integer[] { 1 }, array);
 	}
 
 	@Test
-	public void TestMultipleMatches() {
+	public void TestMultipleMatchesAllCorrect() {
 		ArrayList<Integer> arrayList = positionalIndex.searchForPhrase(new String[]{"commander", "spock"});
 		Collections.sort(arrayList);
 		Integer[] array = arrayList.toArray(new Integer[arrayList.size()]);
 		assertArrayEquals(new Integer[] { 1, 2 }, array);
 	}
 
-	/*
 	@Test
-	public void TestThreeTerms() {
-		ArrayList<Integer> arrayList = positionalIndex.searchForPhrase(new String[]{"his", "soul", "was"});
-		Collections.sort(arrayList);
-		Integer[] array = arrayList.toArray(new Integer[arrayList.size()]);
-		assertArrayEquals(new Integer[] { }, array);
-	}
-
-	@Test
-	public void TestThreeTermsOneMissing() {
-		ArrayList<Integer> arrayList = positionalIndex.searchForPhrase(new String[]{"psychiatrist", "physicist", "marcus"});
+	public void TestMultipleMatchesSomeCorrect() {
+		ArrayList<Integer> arrayList = positionalIndex.searchForPhrase(new String[]{"logic", "spock"}, 3);
 		Collections.sort(arrayList);
 		Integer[] array = arrayList.toArray(new Integer[arrayList.size()]);
 		assertArrayEquals(new Integer[] { 2 }, array);
 	}
-	*/
 	
 	@Test
 	public void TestReverseOrderedTerms() {
-		ArrayList<Integer> arrayList = positionalIndex.searchForPhrase(new String[]{"officer", "communications"});
+		ArrayList<Integer> arrayList = positionalIndex.searchForPhrase(new String[]{"uhura", "penda"}, 1);
 		Collections.sort(arrayList);
 		Integer[] array = arrayList.toArray(new Integer[arrayList.size()]);
-		assertArrayEquals(new Integer[] { }, array);
+		assertArrayEquals(new Integer[] { 4 }, array);
 	}
 
 	@Test
-	public void TestTermsNotNextToEachOther() {
-		ArrayList<Integer> arrayList = positionalIndex.searchForPhrase(new String[]{"doctor", "enterprise"});
+	public void TestReverseOrderedTermsDistanceOfThree() {
+		ArrayList<Integer> arrayList = positionalIndex.searchForPhrase(new String[]{"navigator", "chekov"}, 3);
 		Collections.sort(arrayList);
 		Integer[] array = arrayList.toArray(new Integer[arrayList.size()]);
-		assertArrayEquals(new Integer[] { }, array);
+		assertArrayEquals(new Integer[] { 6 }, array);
 	}
 }

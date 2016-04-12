@@ -1,6 +1,4 @@
-// This tests the searchmethod of the inverted index. The index constructor has to work for this
-
-package _secondTest;
+package test;
 
 import static org.junit.Assert.assertArrayEquals;
 
@@ -14,12 +12,11 @@ import org.junit.Test;
 import _secondGiven.FileReader;
 import _secondWork.PositionalIndex;
 
-public class TestPositionalSingleWord {
+// This tests if the search for a word returns the correct document-numbers
 
-	// Location of two (nonsensical) collections
-	// first collection is simple, second contains upper and lowercase as well
-	// as unnecessary whitespace (which isn't important for the first sheet as
-	// the actual collection isnt lower or uppercase)
+public class Test_3a {
+
+	// Location of test collection
 	private static final String TEST_PATH_3 = "collections/testCollections/third";
 
 	// Variable containing an instance of PositionalIndex

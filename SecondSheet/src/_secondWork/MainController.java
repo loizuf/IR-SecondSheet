@@ -9,53 +9,45 @@ import _secondGiven.FileReader;
 
 public class MainController {
 
-	/*
-	 * LoremIpsumCollectionDirectoryPath - Name des Verzeichnisses das die
-	 * Dokumente enthaelt
-	 */
-	private static final String LOREM_IPSUM_COLLECTION_DIRECTORY_PATH = "collections/lorem";
+	// directory der Collection
+	private static final String COLLECTION_3_DIRECTORY_PATH = "collections/testCollections/third";
 
 	public static void main(String[] args) throws IOException {
 
 		// collection - Liste aller Document-Objekte
-		ArrayList<Document> collection = FileReader.readCollection(LOREM_IPSUM_COLLECTION_DIRECTORY_PATH);
+		ArrayList<Document> collection = FileReader.readCollection(COLLECTION_3_DIRECTORY_PATH);
 
 		// biWordIndex - Repraesentation des biWordIndex
 		// positionalIndex - Repraesentation des positionalIndex
 		BiWordIndex biWordIndex = new BiWordIndex(collection);
-		//PositionalIndex positionalIndex = new PositionalIndex(collection);
+		PositionalIndex positionalIndex = new PositionalIndex(collection);
 
-		// breakdown the query into two terms
+		// Query hohlen
 		String[] queryTerms = getQueryTerms();
 		
-		/*
-		 *  This searches through the BiWordIndex for our Phrase
-		 *  However we search for EXACTLY this combination of Words
-		 *  Therefore we combine them into one string (just like in
-		 *  the indexing progress) and search for that as if it was one word
-		 */
+		// Diese Methode durchsucht den Biword-Index indem beide Worte durch ein Leerzeichen
+		// getrennt als ein Term gesucht werden
 		ArrayList<Integer> resultBiw = biWordIndex.searchForSingleWord(queryTerms[0]+" "+queryTerms[1]);
-		/*
-		 * This searches for the phrase in the positional index
-		 */
-		//ArrayList<Integer> resultPos = positionalIndex.searchForPhrase(queryTerms);
+		// Diese Methode durchsucht den Positional-Index
+		ArrayList<Integer> resultPos = positionalIndex.searchForPhrase(queryTerms);
 		
-		System.out.println("Ergebniss des Bi-WordIndex fï¿½r '" + queryTerms[0]+" "+queryTerms[1] + "'");
+		System.out.println("Ergebniss des Bi-WordIndex");
 		postResults(resultBiw);
 
-		//System.out.println("Ergebniss des Positional-Index");
-		//postResults(resultPos);
+		System.out.println("Ergebniss des Positional-Index");
+		postResults(resultPos);
 	}
 
-	// Bearbeiten sie Aufgabe 3 hier.
+	// Diese Methode liest Terme vom User ein
 	public static String[] getQueryTerms() {
-		// let's get a query from the user via the command line
+		
+		// Einlesen über die Kommandozeile
 		Scanner scanner = new Scanner(System.in);
 		System.out.println("Enter a query:");
 		String query = scanner.nextLine();
 		scanner.close();
 		
-		// Lets clean up those queryterms
+		// Bereinigen der Terme (Trennen in einzelne Terme, Entfernen von überschüssigem Whitespace, Groß-, und Kleinschreibung)
 		String[] result = query.split("\\s+");
 		for (int i = 0; i < result.length; i++) {
 			System.out.println(result[i]);
@@ -65,9 +57,7 @@ public class MainController {
 		return result;
 	}
 
-	/*
-	 * Diese Methode gibt ausschlieslich die Ergebnisse an den User aus
-	 */
+	// Diese Methode gibt ausschlieslich die Ergebnisse an den User aus
 	private static void postResults(ArrayList<Integer> result) {
 		System.out.println("\n+++++++\n");
 		System.out.println("The results are:");

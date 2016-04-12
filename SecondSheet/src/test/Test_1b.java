@@ -1,6 +1,4 @@
-// This tests the searchmethod of the inverted index. The index constructor has to work for this
-
-package _secondTest;
+package test;
 
 import static org.junit.Assert.assertArrayEquals;
 
@@ -14,7 +12,9 @@ import org.junit.Test;
 import _secondGiven.FileReader;
 import _secondWork.BiWordIndex;
 
-public class TestBiWordIndexing {
+//This class tests the Indexing of the BiWord-Index
+
+public class Test_1b {
 
 	// Location of test collection
 	private static final String TEST_PATH_3 = "collections/testCollections/third";
