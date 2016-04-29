@@ -21,6 +21,6 @@ public class BiWordIndex extends InvertedIndex{
 	// Wir kennen diese Aufgabe vom ersten Arbeitsblatt
 	// Sie können ihren code übernehmen
 	public ArrayList<Integer> searchForSingleWord(String word) {
-		return null;
+		return new ArrayList<Integer>();
 	}
 }

@@ -20,10 +20,10 @@ public class Test_1b {
 	private static final String TEST_PATH_3 = "collections/testCollections/third";
 
 	// Variable containing an instance of BiwordIndex
-	private BiWordIndex biWordIndex;
+	private static BiWordIndex biWordIndex;
 	
 	@BeforeClass
-	public void setupBeforeClass() throws FileNotFoundException {
+	public static void setupBeforeClass() throws FileNotFoundException {
 		biWordIndex = new BiWordIndex(FileReader.readCollection(TEST_PATH_3));
 	}
 

@@ -20,10 +20,10 @@ public class Test_3b {
 	private static final String TEST_PATH_3 = "collections/testCollections/third";
 
 	// Variable containing an instance of PositionalIndex
-	private PositionalIndex positionalIndex;
+	private static PositionalIndex positionalIndex;
 
 	@BeforeClass
-	public void setupBeforeClass() throws FileNotFoundException {
+	public static void setupBeforeClass() throws FileNotFoundException {
 		positionalIndex = new PositionalIndex(FileReader.readCollection(TEST_PATH_3));
 	}
 
@@ -48,7 +48,7 @@ public class Test_3b {
 		ArrayList<Integer> arrayList = positionalIndex.searchForSingleWordInDocument("kirk", 0);
 		Collections.sort(arrayList);
 		Integer[] array = arrayList.toArray(new Integer[arrayList.size()]);
-		assertArrayEquals(new Integer[] { 4 }, array);
+		assertArrayEquals(new Integer[] { 3 }, array);
 	}
 
 	@Test

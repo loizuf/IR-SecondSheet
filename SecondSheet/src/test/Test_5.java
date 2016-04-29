@@ -20,10 +20,10 @@ public class Test_5 {
 	private static final String TEST_PATH_3 = "collections/testCollections/third";
 
 	// Variable containing an instance of PositionalIndex
-	private PositionalIndex positionalIndex;
+	private static PositionalIndex positionalIndex;
 
 	@BeforeClass
-	public void setupBeforeClass() throws FileNotFoundException {
+	public static void setupBeforeClass() throws FileNotFoundException {
 		positionalIndex = new PositionalIndex(FileReader.readCollection(TEST_PATH_3));
 	}
 

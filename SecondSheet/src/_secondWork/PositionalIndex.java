@@ -6,32 +6,32 @@ import _secondGiven.Document;
 
 public class PositionalIndex {
 	
-	// Bearbeiten sie Aufgabe 3 hier
+	// Bearbeiten sie Aufgabe 2 hier
 	public PositionalIndex(ArrayList<Document> collection) {
 
 	}
 	
-	// Bearbeiten sie Aufgabe 4.a hier
+	// Bearbeiten sie Aufgabe 3.a hier
 	// Gibt eine Liste von Dokumenten ID's zurück die diesen Term beinhalten
 	public ArrayList<Integer> searchForSingleWord(String word) {
-		return null;
+		return new ArrayList<Integer>();
 	}
 
-	// Bearbeiten sie Aufgabe 4.b hier
+	// Bearbeiten sie Aufgabe 3.b hier
 	// Gibt eine Liste von Positionsnummern zurück an denen das Wort in diesem Dokument vorkommt
 	public ArrayList<Integer> searchForSingleWordInDocument(String word, int docNumber) {
-		return null;
+		return new ArrayList<Integer>();
 	}
 
-	// Bearbeiten sie Aufgabe 4.c hier (ebenso Aufgabe 5)
+	// Bearbeiten sie Aufgabe 3.c hier (ebenso Aufgabe 4)
 	// Gibt eine Liste von Dokumenten ID's zurück die diese Phrase enthalten
 	public ArrayList<Integer> searchForPhrase(String[] phrase) {
-		return null;
+		return new ArrayList<Integer>();
 	}
 	
-	// Bearbeiten sie Aufgabe 6 hier
+	// Bearbeiten sie Aufgabe 5 hier
 	// Gibt eine Liste von Dokumenten ID's zurück die diese Terme im Abstand von k zueinander enthalten
 	public ArrayList<Integer> searchForPhrase(String[] phrase, int k) {
-		return null;
+		return new ArrayList<Integer>();
 	}
 }
